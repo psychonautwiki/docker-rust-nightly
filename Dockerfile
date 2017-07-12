@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:buster-slim
 MAINTAINER Kenan Sulayman <kenan@sly.mn>
 
 ENV USER root
