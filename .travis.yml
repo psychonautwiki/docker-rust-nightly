@@ -6,8 +6,11 @@ services:
   - docker
 
 before_install:
-  - docker build -t psychonaut/rust-nightly .
+  - export DATE=$(date '+%Y-%m-%d')
+  - docker build -t psychonaut/rust-nightly:${DATE} .
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push psychonaut/rust-nightly
+  - docker push psychonaut/rust-nightly:${DATE}
+  - docker tag psychonaut/rust-nightly:${DATE} psychonaut/rust-nightly:latest
+  - docker push psychonaut/rust-nightly:latest

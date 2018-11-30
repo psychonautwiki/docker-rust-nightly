@@ -1,8 +1,7 @@
-FROM debian:buster-slim
-MAINTAINER Kenan Sulayman <kenan@sly.mn>
+FROM debian:wheezy-slim
+LABEL Kenan Sulayman <kenan@sly.mn>
 
 ENV USER root
-ENV RUST_VERSION=nightly
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -12,14 +11,10 @@ RUN apt-get update && \
     git \
     libssl-dev \
     pkg-config && \
-  curl -sO https://static.rust-lang.org/dist/rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  tar -xzf rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz && \
-  ./rust-$RUST_VERSION-x86_64-unknown-linux-gnu/install.sh --without=rust-docs && \
+  curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y && \
   DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y curl && \
   DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
   rm -rf \
-    rust-$RUST_VERSION-x86_64-unknown-linux-gnu \
-    rust-$RUST_VERSION-x86_64-unknown-linux-gnu.tar.gz \
     /var/lib/apt/lists/* \
     /tmp/* \
     /var/tmp/* && \
