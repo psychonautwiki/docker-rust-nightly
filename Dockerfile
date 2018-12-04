@@ -2,6 +2,7 @@ FROM debian:wheezy-slim
 LABEL Kenan Sulayman <kenan@sly.mn>
 
 ENV USER root
+ENV PATH /root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
