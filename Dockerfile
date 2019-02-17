@@ -1,4 +1,4 @@
-FROM debian:wheezy-slim
+FROM ubuntu:cosmic
 LABEL Kenan Sulayman <kenan@sly.mn>
 
 ENV USER root
