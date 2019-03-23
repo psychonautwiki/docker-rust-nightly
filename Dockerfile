@@ -10,7 +10,8 @@ RUN apt-get update && \
     ca-certificates \
     curl \
     git \
-    libssl-dev \
+    libssl1.0-dev \
+    openssl1.0 \
     pkg-config && \
   curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y && \
   DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y curl && \
