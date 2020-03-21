@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 13.2.0
-      - run: yarn install
-      - run: yarn run build:prod
       - name: build-push
         uses: docker/build-push-action@v1
         with:
