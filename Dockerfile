@@ -1,4 +1,4 @@
-FROM ubuntu:cosmic
+FROM ubuntu:bionic
 LABEL Kenan Sulayman <kenan@sly.mn>
 
 ENV USER root
