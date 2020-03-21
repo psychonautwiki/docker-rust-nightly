@@ -1,0 +1,24 @@
+on:
+  - push
+  - schedule:
+    - cron:  '0 22 * * *'
+
+name: General checks
+jobs:
+  build:
+    name: push:deps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 13.2.0
+      - run: yarn install
+      - run: yarn run build:prod
+      – name: build-push
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ DOCKER_USERNAME }}
+          password: ${{ DOCKER_PASSWORD }}
+          repository: psychonaut/rust-nightly
+          tags: latest,$(date '+%Y-%m-%d')
