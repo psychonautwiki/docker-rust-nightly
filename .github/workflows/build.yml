@@ -15,7 +15,7 @@ jobs:
           node-version: 13.2.0
       - run: yarn install
       - run: yarn run build:prod
-      – name: build-push
+      - name: build-push
         uses: docker/build-push-action@v1
         with:
           username: ${{ DOCKER_USERNAME }}
